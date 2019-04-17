@@ -69,6 +69,38 @@ This will limit the media errors that usually happen when running from SD card, 
 Warning, this will permanently set the Raspberry Pi to only boot from USB. If you want this, follow [these steps](https://www.raspberrypi.org/documentation/hardware/raspberrypi/bootmodes/msd.md)
 
 NOTE: help needed to further explain the required steps in this section. If you are taking this path, please consider editing this wiki.
+I want to follow this path.
+My Raspberry PI 3 has already the boot from USB set, and I have an alredy running instance of NextcloudPI on an external hard drive that has been set up using option 2.
+It did not succeded to boot from the running hard drive, even if I have a /boot partition in fat32 on it.
+So I decided to use a new disk and have an install "from scratch"
+
+I downloaded NextCloudPi_RPi_03-09-19 on my desktop computer (Linux Mint 19.1 ) with transmission.
+I checked the md5sum :
+patrice@internity:~/Téléchargements/Framboise/NextCloudPi_RPi_03-09-19$ md5sum NextCloudPi_RPi_03-09-19.tar.bz2 
+f0d1d181353491a10f555d662747d0bd  NextCloudPi_RPi_03-09-19.tar.bz2
+patrice@internity:~/Téléchargements/Framboise/NextCloudPi_RPi_03-09-19$
+
+I extracted the file NextCloudPi_RPi_03-09-19.img and I "burned" it on the drive with Etcher
+TAKE CARE to choose the right disk : etcher show ALL your disks and issue the warning "large drive" on all.
+
+I got a disk with the following partitions :
+Disque /dev/sdd : 1,8 TiB, 2000398934016 octets, 3907029168 secteurs
+Unités : secteur de 1 × 512 = 512 octets
+Taille de secteur (logique / physique) : 512 octets / 512 octets
+taille d'E/S (minimale / optimale) : 512 octets / 512 octets
+Type d'étiquette de disque : dos
+Identifiant de disque : 0x6ae67e9d
+
+Périphérique Amorçage Début     Fin Secteurs Taille Id Type
+/dev/sdd1              8192   98045    89854  43,9M  c W95 FAT32 (LBA)
+/dev/sdd2             98304 6291455  6193152     3G 83 Linux
+
+sdd1 is labeled ad boot, sdd2 as rootfs, and most of the disk is unallocated.
+
+Plug this drive on the Raspberry PI 3 without SD card.
+
+..... to be continued
+
 
 ### Option 4: Install NextCloudPi on SD or external usb drive with Berryboot 
 [Wiki/HowTo here](http://docs.nextcloudpi.com/en/latest/Getting-Started/Berryboot-install-NextCloudPi-on-an-external-drive-step-by-step/)
